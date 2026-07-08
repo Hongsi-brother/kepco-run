@@ -20,8 +20,10 @@
       "preload.js",
       "sprites/**/*",
       "sprites_daeri/**/*",
+      "sprites_hongsi/**/*",
       "powercat.png",
-      "최강대리.png"
+      "최강대리.png",
+      "Hongsi.png"
     ],
     "mac": {
       "target": "dmg",

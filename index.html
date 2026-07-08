@@ -47,6 +47,7 @@ const PLAYER_X = 80;
 const CHAR_FRAMES = {
   powercat: { run: [], jump: [], idle: [], damaged: [] },
   daeri: { run: [], jump: [], idle: [], damaged: [] },
+  hongsi: { run: [], jump: [], idle: [], damaged: [] },
 };
 let spritesLoaded = 0;
 let spritesTotal = 0;
@@ -82,11 +83,17 @@ loadFrames(CHAR_FRAMES.daeri, 'run', 'sprites_daeri/', ['run_0.png','run_1.png',
 loadFrames(CHAR_FRAMES.daeri, 'jump', 'sprites_daeri/', ['jump_0.png','jump_1.png','jump_2.png','jump_3.png','jump_4.png']);
 loadFrames(CHAR_FRAMES.daeri, 'idle', 'sprites_daeri/', ['idle_0.png','idle_1.png','idle_2.png','idle_3.png']);
 loadFrames(CHAR_FRAMES.daeri, 'damaged', 'sprites_daeri/', ['damaged_0.png','damaged_1.png']);
+// 홍시
+loadFrames(CHAR_FRAMES.hongsi, 'run', 'sprites_hongsi/', ['run_0.png','run_1.png','run_2.png','run_3.png','run_4.png','run_5.png']);
+loadFrames(CHAR_FRAMES.hongsi, 'jump', 'sprites_hongsi/', ['jump_0.png','jump_1.png','jump_2.png','jump_3.png','jump_4.png','jump_5.png']);
+loadFrames(CHAR_FRAMES.hongsi, 'idle', 'sprites_hongsi/', ['idle_0.png','idle_1.png','idle_2.png','idle_3.png']);
+loadFrames(CHAR_FRAMES.hongsi, 'damaged', 'sprites_hongsi/', ['damaged_0.png','damaged_1.png','damaged_2.png','damaged_3.png']);
 
 function getFrames() {
   const ch = CHARACTERS[selectedChar];
   if (ch.type === 'powercat') return CHAR_FRAMES.powercat;
   if (ch.type === 'daeri') return CHAR_FRAMES.daeri;
+  if (ch.type === 'hongsi') return CHAR_FRAMES.hongsi;
   return null;
 }
 
@@ -105,6 +112,7 @@ let startTab = 'main'; // 'main' or 'guide'
 const CHARACTERS = [
   { name: '파워캣', color: '#FFD700', type: 'powercat' },
   { name: '최강대리', color: '#D4A574', type: 'daeri' },
+  { name: '홍시', color: '#F0C68A', type: 'hongsi' },
 ];
 let score = 0;
 let highScore = (window.scoreAPI ? window.scoreAPI.load() : parseInt(localStorage.getItem('kepcoRunHighScore'))) || 0;
@@ -670,6 +678,7 @@ document.addEventListener('keydown', (e) => {
       gameState = STATE.PLAYING;
     } else if (e.code === 'Digit1') { selectedChar = 0; resetGame(); gameState = STATE.PLAYING; }
     else if (e.code === 'Digit2') { selectedChar = 1; resetGame(); gameState = STATE.PLAYING; }
+    else if (e.code === 'Digit3') { selectedChar = 2; resetGame(); gameState = STATE.PLAYING; }
   }
 });
 canvas.addEventListener('click', (e) => {
@@ -1424,6 +1433,11 @@ const DRAW_CONFIG = {
     run:     { offX: -8, drawH: 68 },
     jump:    { offX: -6, drawH: 78 },
     damaged: { offX: -4, drawH: 70 },
+  },
+  hongsi: {
+    run:     { offX: 0, drawH: 50 },
+    jump:    { offX: 0, drawH: 62 },
+    damaged: { offX: 0, drawH: 58 },
   },
 };
 
